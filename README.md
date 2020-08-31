@@ -36,13 +36,13 @@ Things you may want to cover:
 | lastname       | string | null: false |
 | firstname_kana | string | null: false |
 | lastname_kana  | string | null: false |
-| birthday       | string | null: false |
+| birthday       | date   | null: false |
 
 
 ### Association
 
 - has_many :items
-- has_many :transactions
+- has_many :purchases
 
 ## Items テーブル
 
@@ -50,45 +50,46 @@ Things you may want to cover:
 | ------               | ------     | ----------- |
 | image                | string     | null: false |
 | name                 | string     | null: false |
-| info                 | string     | null: false |
-| category             | string     | null: false |
-| status               | string     | null: false |
-| ship_charge          | string     | null: false |
-| ship_from            | string     | null: false |
-| ship_preparation_day | string     | null: false |
+| info                 | text       | null: false |
+| category             | integer    | null: false |
+| status               | integer    | null: false |
+| ship_charge          | integer    | null: false |
+| ship_from            | integer    | null: false |
+| ship_preparation_day | integer    | null: false |
 | price                | integer    | null: false |
-| user_id              | references | null: false, foreign_key: true |
+| user                 | references | null: false, foreign_key: true |
 
 ### Association
 
 - belongs_to :user
-- has_one :transaction
+- has_one :purchase
 
-## Transactions テーブル
+## Purchases テーブル
 
-| Column    | Type       | Options                        |
-| ------    | ---------- | ------------------------------ |
-| user_id   | references | null: false, foreign_key: true |
-| item_id   | references | null: false, foreign_key: true |
+| Column | Type       | Options                        |
+| ------ | ---------- | ------------------------------ |
+| user   | references | null: false, foreign_key: true |
+| item   | references | null: false, foreign_key: true |
 
 ### Association
 
 - has_many :user
 - belongs_to :item
-- has_one :shippingAddress 
+- has_one :shippingaddress 
 
 ## ShippingAddresses テーブル
 
 | Column         | Type       | Options                        |
 | -------        | ---------- | ------------------------------ |
-| transaction_id | references | null: false, foreign_key: true |
-| postal_code    | string     | null: false |
-| prefecture     | string     | null: false |
-| address        | string     | null: false |
-| building       | string     | null: false |
-| phone_number   | string     | null: false |
+| purchase     | references | null: false, foreign_key: true |
+| postal_code  | string     | null: false |
+| prefecture   | integer    | null: false |
+| city         | string     | null: false |
+| address      | string     | null: false |
+| building     | string     |             |
+| phone_number | string     | null: false |
 
 
 ### Association
 
-- belongs_to :transaction
+- belongs_to :purchase
