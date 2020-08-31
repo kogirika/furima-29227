@@ -64,7 +64,7 @@ Things you may want to cover:
 - belongs_to :user
 - has_one :transaction
 
-## Transaction テーブル
+## Transactions テーブル
 
 | Column    | Type       | Options                        |
 | ------    | ---------- | ------------------------------ |
@@ -77,7 +77,7 @@ Things you may want to cover:
 - belongs_to :item
 - has_one :shippingAddress 
 
-## ShippingAddress テーブル
+## ShippingAddresses テーブル
 
 | Column         | Type       | Options                        |
 | -------        | ---------- | ------------------------------ |
