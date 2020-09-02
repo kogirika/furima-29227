@@ -5,11 +5,11 @@ class Item < ApplicationRecord
   with_options presence: true do
     validates :name
     validates :info
-    validates :category
-    validates :status
-    validates :ship_charge
-    validates :ship_from
-    validates :ship_preparation_day
+    validates :category_id
+    validates :status_id
+    validates :ship_charge_id
+    validates :ship_from_id
+    validates :ship_preparation_day_id
     validates :price, numericality: { only_integer: true,
                                       greater_than: 300, less_than: 9999999,
                                       message: '価格は¥300~¥9,999,999の間で入力してください' },
