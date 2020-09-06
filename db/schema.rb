@@ -49,8 +49,8 @@ ActiveRecord::Schema.define(version: 2020_09_05_122004) do
   end
 
   create_table "purchases", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "item_id"
+    t.bigint "user_id", null: false
+    t.bigint "item_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["item_id"], name: "index_purchases_on_item_id"
@@ -58,13 +58,13 @@ ActiveRecord::Schema.define(version: 2020_09_05_122004) do
   end
 
   create_table "shippingaddresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "purchase_id"
-    t.string "postal_code"
-    t.integer "prefecture"
-    t.string "city"
-    t.string "address"
-    t.string "building"
-    t.string "phone_number"
+    t.bigint "purchase_id", null: false
+    t.string "postal_code", null: false
+    t.integer "prefecture", null: false
+    t.string "city", null: false
+    t.string "address", null: false
+    t.string "building", null: false
+    t.string "phone_number", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["purchase_id"], name: "index_shippingaddresses_on_purchase_id"
@@ -90,4 +90,7 @@ ActiveRecord::Schema.define(version: 2020_09_05_122004) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "items", "users"
+  add_foreign_key "purchases", "items"
+  add_foreign_key "purchases", "users"
+  add_foreign_key "shippingaddresses", "purchases"
 end
