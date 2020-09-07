@@ -3,6 +3,12 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
+  # アソシエーション
+  has_many :items
+  has_many :purchases
+
+  # バリデーション
   with_options presence: true do
     validates :nickname
     validates :email,          format: { with: /\A.+@.+\z/, message: 'メールアドレスを入力してください' }

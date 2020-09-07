@@ -6,10 +6,14 @@ class Item < ApplicationRecord
   belongs_to_active_hash :ship_charge
   belongs_to_active_hash :prefecture
   belongs_to_active_hash :ship_preparation_day
+
   # Activeimageのアソシエーション
   has_one_attached :image
+
   # アソシエーション
   belongs_to :user
+  has_one :purchase
+
   # バリデーション
   with_options presence: true do
     validates :image

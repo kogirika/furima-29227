@@ -72,7 +72,7 @@ Things you may want to cover:
 
 ### Association
 
-- has_many :user
+- belongs_to :user
 - belongs_to :item
 - has_one :shippingaddress 
 
@@ -82,7 +82,7 @@ Things you may want to cover:
 | ------------ | ---------- | ------------------------------ |
 | purchase     | references | null: false, foreign_key: true |
 | postal_code  | string     | null: false                    |
-| prefecture   | integer    | null: false                    |
+| prefecture_id| integer    | null: false                    |
 | city         | string     | null: false                    |
 | address      | string     | null: false                    |
 | building     | string     |                                |
