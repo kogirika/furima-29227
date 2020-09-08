@@ -17,7 +17,7 @@ const pay = () => {
       if (status == 200) {
         const token = response.id;
         const renderDom = document.getElementById("charge-form");
-        const tokenObj = `<input value=${token} type="hidden" name='token'>`;
+        const tokenObj = `<input value=${token} type="hidden" name='purchase_shippingaddress[token]'>`;
         renderDom.insertAdjacentHTML("beforeend", tokenObj);
       }
       document.getElementById("card-number").removeAttribute("name");
