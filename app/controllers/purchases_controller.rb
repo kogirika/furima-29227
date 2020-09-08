@@ -1,12 +1,13 @@
 class PurchasesController < ApplicationController
+  before_action :authenticate_user!
+  before_action :set_item, only: [:index, :create]
+  before_action :redirect_top, only: [:index, :create] #購入済み、出品者をトップに飛ばす
 
   def index
-    @item = Item.find(params[:item_id])
     @purchase_shippingaddress = PurchaseShippingaddress.new
   end
 
   def create
-    @item = Item.find(params[:item_id])
     @purchase_shippingaddress = PurchaseShippingaddress.new(purchase_params)
     if @purchase_shippingaddress.valid?
       pay_item
@@ -32,5 +33,14 @@ class PurchasesController < ApplicationController
       currency:'jpy'
     )
   end
-  
+
+  def redirect_top
+    redirect_to root_path if current_user.id == Item.find(params[:item_id]).user_id
+    redirect_to root_path if Item.find(params[:item_id]).purchase != nil
+  end
+    
+
+  def set_item
+    @item = Item.find(params[:item_id])
+  end
 end
