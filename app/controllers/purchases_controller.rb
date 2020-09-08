@@ -1,7 +1,7 @@
 class PurchasesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_item, only: [:index, :create]
-  before_action :redirect_top, only: [:index, :create] #購入済み、出品者をトップに飛ばす
+  before_action :redirect_top, only: [:index, :create] # 購入済み、出品者をトップに飛ばす
 
   def index
     @purchase_shippingaddress = PurchaseShippingaddress.new
@@ -26,19 +26,18 @@ class PurchasesController < ApplicationController
   end
 
   def pay_item
-    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
+    Payjp.api_key = ENV['PAYJP_SECRET_KEY']
     Payjp::Charge.create(
       amount: @item.price,
       card: purchase_params[:token],
-      currency:'jpy'
+      currency: 'jpy'
     )
   end
 
   def redirect_top
     redirect_to root_path if current_user.id == Item.find(params[:item_id]).user_id
-    redirect_to root_path if Item.find(params[:item_id]).purchase != nil
+    redirect_to root_path unless Item.find(params[:item_id]).purchase.nil?
   end
-    
 
   def set_item
     @item = Item.find(params[:item_id])
