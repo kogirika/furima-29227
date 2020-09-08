@@ -8,7 +8,7 @@ class PurchaseShippingaddress
     validates :city
     validates :address
     validates :postal_code,  format: { with: /\A\d{3}[-]\d{4}\z/, message: '郵便番号は123-4567という形で入力してください' }
-    validates :phone_number, format: { with: /\A\d{,11}\z/, message: '電話番号はハイフン不要で11桁以内で入力してください' }
+    validates :phone_number, format: { with: /\A\d{,11}\z/, message: '電話番号はハイフンなしで11桁以内で入力してください' }
   end
   validates :prefecture_id,  numericality: { other_than: 0, message: '選択してください' }
 
