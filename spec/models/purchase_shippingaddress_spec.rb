@@ -10,7 +10,12 @@ RSpec.describe PurchaseShippingaddress, type: :model do
         expect(@psa).to be_valid
       end
     end
-    context '新規登録がうまくいかないとき' do
+    context '販売情報登録がうまくいかないとき' do
+      it 'トークンが空だと保存できないこと' do
+        @psa.token = ''
+        @psa.valid?
+        expect(@psa.errors.full_messages).to include("Token can't be blank")
+      end
       it '郵便番号が空だと保存できないこと' do
         @psa.postal_code = ''
         @psa.valid?
@@ -34,7 +39,7 @@ RSpec.describe PurchaseShippingaddress, type: :model do
       it '番地が空だと保存できないこと' do
         @psa.address = ''
         @psa.valid?
-        expect(@psa.errors.full_messages).to include("Adress can't be blank")
+        expect(@psa.errors.full_messages).to include("Address can't be blank")
       end
       it '電話番号が空だと保存できないこと' do
         @psa.phone_number = ''
@@ -42,12 +47,12 @@ RSpec.describe PurchaseShippingaddress, type: :model do
         expect(@psa.errors.full_messages).to include("Phone number can't be blank")
       end
       it '電話番号にハイフンが入っていると登録できない' do
-        @psa.password = '070-0000-0000'
+        @psa.phone_number = '070-0000-0000'
         @psa.valid?
         expect(@psa.errors.full_messages).to include('Phone number 電話番号はハイフンなしで11桁以内で入力してください')
       end
       it '電話番号が11桁以上だと登録できない' do
-        @psa.password = '123456789012'
+        @psa.phone_number = '123456789012'
         @psa.valid?
         expect(@psa.errors.full_messages).to include('Phone number 電話番号はハイフンなしで11桁以内で入力してください')
       end
