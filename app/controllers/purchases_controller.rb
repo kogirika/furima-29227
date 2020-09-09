@@ -35,8 +35,7 @@ class PurchasesController < ApplicationController
   end
 
   def redirect_top
-    redirect_to root_path if current_user.id == Item.find(params[:item_id]).user_id
-    redirect_to root_path unless Item.find(params[:item_id]).purchase.nil?
+    redirect_to root_path if current_user.id == Item.find(params[:item_id]).user_id || !Item.find(params[:item_id]).purchase.nil?
   end
 
   def set_item
