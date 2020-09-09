@@ -132,16 +132,18 @@
           <div class='item-img-content'>
             <%= image_tag item.image, class: "item-img" %>
 
-            <%# 商品が売れていればsold outの表示 %>
+            <%# sold outの表示 %>
+            <% unless item.purchase == nil %>
             <div class='sold-out'>
               <span>Sold Out!!</span>
             </div>
-            <%# //商品が売れていればsold outの表示 %>
+            <% end %>
 
           </div>
           <div class='item-info'>
             <h3 class='item-name'>
               <%= item.name %>
+
             </h3>
             <div class='item-price'>
               <span><%= item.price.to_s(:delimited) %>円<br>(税込み)</span>
