@@ -21,7 +21,7 @@ class Item < ApplicationRecord
     validates :info
     validates :category_id, numericality: { other_than: 0, message: 'を選択してください' }
     validates :status_id, numericality: { other_than: 0, message: 'を選択してください' }
-    validates :ship_charge_id, numericality: { other_than: 0, message: 'をを選択してください' }
+    validates :ship_charge_id, numericality: { other_than: 0, message: 'を選択してください' }
     validates :prefecture_id, numericality: { other_than: 0, message: 'を選択してください' }
     validates :ship_preparation_day_id, numericality: { other_than: 0, message: 'を選択してください' }
     validates :price, numericality: { only_integer: true,

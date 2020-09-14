@@ -17,7 +17,7 @@ ja:
         ship_charge_id: 配送料の負担
         prefecture_id: 発送元の地域
         ship_preparation_day_id: 発送までの日数
-        price: 価格,
+        price: 価格
   activemodel:
     attributes:
       purchase_shippingaddress:
