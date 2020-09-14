@@ -14,47 +14,47 @@ RSpec.describe PurchaseShippingaddress, type: :model do
       it 'トークンが空だと保存できないこと' do
         @psa.token = ''
         @psa.valid?
-        expect(@psa.errors.full_messages).to include("Token can't be blank")
+        expect(@psa.errors.full_messages).to include('正しいクレジットカード情報を入力してください')
       end
       it '郵便番号が空だと保存できないこと' do
         @psa.postal_code = ''
         @psa.valid?
-        expect(@psa.errors.full_messages).to include("Postal code can't be blank")
+        expect(@psa.errors.full_messages).to include('郵便番号を入力してください')
       end
       it '郵便番号にハイフンがないと保存できない' do
         @psa.postal_code = '1234567'
         @psa.valid?
-        expect(@psa.errors.full_messages).to include('Postal code 郵便番号は123-4567という形で入力してください')
+        expect(@psa.errors.full_messages).to include('郵便番号は123-4567という形で入力してください')
       end
       it '都道府県が非選択だと保存できないこと' do
         @psa.prefecture_id = 0
         @psa.valid?
-        expect(@psa.errors.full_messages).to include('Prefecture 選択してください')
+        expect(@psa.errors.full_messages).to include('都道府県を選択してください')
       end
       it '市町村が空だと保存できないこと' do
         @psa.city = ''
         @psa.valid?
-        expect(@psa.errors.full_messages).to include("City can't be blank")
+        expect(@psa.errors.full_messages).to include('市区町村を入力してください')
       end
       it '番地が空だと保存できないこと' do
         @psa.address = ''
         @psa.valid?
-        expect(@psa.errors.full_messages).to include("Address can't be blank")
+        expect(@psa.errors.full_messages).to include('番地を入力してください')
       end
       it '電話番号が空だと保存できないこと' do
         @psa.phone_number = ''
         @psa.valid?
-        expect(@psa.errors.full_messages).to include("Phone number can't be blank")
+        expect(@psa.errors.full_messages).to include('電話番号を入力してください')
       end
       it '電話番号にハイフンが入っていると登録できない' do
         @psa.phone_number = '070-0000-0000'
         @psa.valid?
-        expect(@psa.errors.full_messages).to include('Phone number 電話番号はハイフンなしで11桁以内で入力してください')
+        expect(@psa.errors.full_messages).to include('電話番号はハイフンなしで11桁以内で入力してください')
       end
       it '電話番号が11桁以上だと登録できない' do
         @psa.phone_number = '123456789012'
         @psa.valid?
-        expect(@psa.errors.full_messages).to include('Phone number 電話番号はハイフンなしで11桁以内で入力してください')
+        expect(@psa.errors.full_messages).to include('電話番号はハイフンなしで11桁以内で入力してください')
       end
     end
   end
