@@ -11,7 +11,7 @@ class User < ApplicationRecord
   # バリデーション
   with_options presence: true do
     validates :nickname
-    validates :email,          format: { with: /\A.+@.+\z/, message: 'メールアドレスを入力してください' }
+    validates :email,          format: { with: /\A.+@.+\z/, message: 'を入力してください' }
     validates :password,       format: { with: /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+{6,}\z/i, message: '英数字混合６文字以上で入力してください' }
     validates :firstname,      format: { with: /\A[ぁ-んァ-ン一-龥]/, message: '全角で入力してください' }
     validates :lastname,       format: { with: /\A[ぁ-んァ-ン一-龥]/, message: '全角で入力してください' }
